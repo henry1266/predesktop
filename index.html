@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>處方即時狀態</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 10px;
+      background-color: rgba(244, 244, 244, 0.8);
+      color: #333;
+      overflow: hidden;
+      border-radius: 10px;
+      -webkit-app-region: drag; /* 允許拖動窗口 */
+    }
+    
+    .title-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 5px;
+      -webkit-app-region: drag;
+    }
+    
+    h2 {
+      color: #0056b3;
+      text-align: center;
+      margin: 0;
+      font-size: 18px;
+    }
+    
+    .container {
+      display: flex;
+      gap: 4px;
+      margin-top: 4px;
+    }
+    
+    #leftColumn {
+      flex: 1;
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 4px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    
+    #rightColumn {
+      flex: 1;
+      background-color: rgba(255, 255, 255, 0.5);
+      padding: 4px;
+      border-radius: 8px;
+      border: 2px dashed #ccc;
+      color: #333;
+    }
+    
+    .prescription-info p {
+      margin: 4px 0;
+      font-size: 0.9rem;
+    }
+    
+    .prescription-info strong {
+      color: #0056b3;
+    }
+    
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 4px;
+      font-size: 0.8rem;
+    }
+    
+    th, td {
+      border: 1px solid #ddd;
+      padding: 3px;
+      text-align: left;
+    }
+    
+    th {
+      background-color: rgba(233, 236, 239, 0.8);
+      color: #495057;
+    }
+    
+    .no-data {
+      color: #777;
+      text-align: center;
+      font-size: 0.9rem;
+      padding: 4px;
+    }
+    
+    /* 按鈕容器樣式 */
+    .button-container {
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      z-index: 100;
+      -webkit-app-region: no-drag; /* 按鈕區域不可拖動 */
+    }
+    
+    /* 按鈕基本樣式 */
+    .action-btn {
+      border: none;
+      padding: 5px 10px;
+      border-radius: 4px;
+      cursor: pointer;
+      margin-left: 5px;
+      transition: transform 0.2s, box-shadow 0.2s;
+      font-size: 0.8rem;
+      -webkit-app-region: no-drag;
+    }
+    
+    /* 取消按鈕樣式 */
+    #cancelBtn {
+      background-color: #dc3545;
+      color: white;
+    }
+    
+    /* 改單按鈕樣式 */
+    #modifyBtn {
+      background-color: #ffc107;
+      color: black;
+    }
+    
+    /* 關閉按鈕樣式 */
+    #closeBtn {
+      background-color: #6c757d;
+      color: white;
+      font-size: 0.7rem;
+      padding: 3px 6px;
+    }
+    
+    /* 閃爍動畫 */
+    @keyframes flash {
+      0% { opacity: 1; }
+      25% { opacity: 0.5; }
+      50% { opacity: 1; }
+      75% { opacity: 0.5; }
+      100% { opacity: 1; }
+    }
+    
+    .flash-animation {
+      animation: flash 0.5s;
+    }
+  </style>
+</head>
+<body>
+  <div class="title-bar">
+    <h2>處方即時狀態</h2>
+    <div class="button-container">
+      <button id="cancelBtn" class="action-btn">取消</button>
+      <button id="modifyBtn" class="action-btn">改單</button>
+      <button id="closeBtn" class="action-btn">X</button>
+    </div>
+  </div>
+
+  <div class="container">
+    <div id="leftColumn">
+      <div id="prescriptionDetailsContainer">
+        <p class="no-data">等待處方資料更新...</p>
+      </div>
+    </div>
+    <div id="rightColumn">
+      <div id="rightInfoBox">
+        <p class="no-data">尚無處方資訊</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>

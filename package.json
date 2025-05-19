@@ -1,0 +1,46 @@
+{
+  "name": "predesktop",
+  "version": "1.0.0",
+  "description": "處方桌面小工具",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder --win",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/henry1266/predesktop.git"
+  },
+  "keywords": [
+    "electron",
+    "prescription",
+    "desktop"
+  ],
+  "author": "Henry",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/henry1266/predesktop/issues"
+  },
+  "homepage": "https://github.com/henry1266/predesktop#readme",
+  "build": {
+    "appId": "com.henry.predesktop",
+    "productName": "處方桌面小工具",
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "target": "nsis"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true
+    }
+  },
+  "devDependencies": {
+    "electron": "^36.2.1",
+    "electron-builder": "^26.0.12",
+    "socket.io-client": "^4.8.1"
+  }
+}
